@@ -1,61 +1,34 @@
-        const products=[
-            
-            
-            {image:"images/products/athletic-cotton-socks-6-pairs.jpg",
-            Name:"Black and Gray Athletic Cotton Socks - 6 Pairs",
-            rating:{
-                stars:"45",
-                no_of_reviews:87
-            },
-            price_cents:1090
-        },
+import {add_cart} from '../data/cart.js';
+// import {cart as mycart} from "/data/cart.js"  // if we want to decalre a variable same name as cart
+import {products} from  '../data/products.js';
 
 
 
-        {image:"images/products/intermediate-composite-basketball.jpg",
-            Name:" Intermediate Size Basketball",
-            rating:{
-                stars:"40",
-                no_of_reviews:127
-            },
-            price_cents:2095}
-            
-            
-            
-            ,{image:"images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg",
-            Name:" Adults Plain Cotton T-Shirt - 2 Pack",
-            rating:{
-                stars:"45",
-                no_of_reviews:56 
-            },
-            price_cents:799 }
-        ]
+let innerHtml = "";
 
-        let innerHtml="";
-
-        function add_product(){
-        products.forEach((value)=>{
+function add_product_to_webpage() {
+    products.forEach((product) => {
         innerHtml +=
             `<div class="product-container">
                 <div class="product-image-container">
                     <img class="product-image"
-                    src="${value.image}">
+                    src="${product.image}">
                 </div>
 
                 <div class="product-name limit-text-to-2-lines">
-                    ${value.Name}
+                    ${product.name}
                 </div>
 
                 <div class="product-rating-container">
                     <img class="product-rating-stars"
-                    src="images/ratings/rating-${value.rating.stars}.png">
+                    src="images/ratings/rating-${product.rating.stars}.png">
                     <div class="product-rating-count link-primary">
-                    ${value.rating.no_of_reviews}
+                    ${product.rating.count}
                     </div>
                 </div>
 
                 <div class="product-price">
-                    $${((value.price_cents)/100).toFixed(2)}
+                    $${((product.priceCents) / 100).toFixed(2)}
                 </div>
 
                 <div class="product-quantity-container">
@@ -80,15 +53,21 @@
                     Added
                 </div>
 
-                <button class="add-to-cart-button button-primary">
+                <button class="add-to-cart button-primary js-add-to-cart"
+                data-product-id="${product.id}">
                     Add to Cart
                 </button>
                 </div>`
-            
-        document.querySelector(".products-grid").innerHTML=innerHtml;
-    }
-  )
-}
 
-add_product();
+
+    }
+    );
+    document.querySelector(".products-grid").innerHTML = innerHtml;
+
+}
+add_product_to_webpage();
+add_cart();
+
+
+
 
