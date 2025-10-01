@@ -11,7 +11,7 @@ cart.forEach((cartItem)=>{
  let matcheditem="";
 
   products.forEach((product)=>{
-    if(cartItem.product_id === product.id){
+    if(cartItem.productId === product.id){
       matcheditem=product;
        
     }
